@@ -1,7 +1,7 @@
 package Factories;
 
 import Stores.StoreAdapter;
-import UIs.Cli;
+import UIs.Cli.Cli;
 import UIs.Gui;
 import UIs.UI;
 
