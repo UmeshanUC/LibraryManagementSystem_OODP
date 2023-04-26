@@ -1,14 +1,60 @@
 package UIs;
 
+import Stores.StoreAdapter;
+
 import java.util.Scanner;
 
-public abstract class PageBase implements Page{
-    private Scanner input = new Scanner(System.in);
-    public String GetUserInput(){
+public abstract class PageBase implements Page {
+    private final Scanner input = new Scanner(System.in);
+    protected final StoreAdapter dataStore;
+
+    /**
+     * Display an alert on any action result such as success alert or failure alert
+     *
+     * @param label alert to be displayed
+     */
+    protected void alert(String label) {
+        System.out.println(String.format("\n\n --- %s ---\n\n", label));
+    }
+
+    public PageBase(StoreAdapter dataStore) {
+        this.dataStore = dataStore;
+    }
+
+    protected char getUserActionInput() {
+        return input.next().charAt(0);
+
+    }
+
+    protected String getUserStringInput(String label) {
+        System.out.print(label);
         return input.nextLine();
     }
-    @Override
-    public String show() {
-        return null;
+
+    protected char rerenderOnBackNavigation() {
+        return show();
+    }
+
+    protected abstract char execute();
+
+    protected void exitApp(int retCode) {
+        System.exit(retCode);
+    }
+
+    /**
+     * Show the page
+     *
+     * @return users input if there's not any matching case
+     * if the return in char 'b', the return value should be checked to navigate to previous page
+     */
+    public char show() {
+        while (true) {
+            char res = execute();
+            if (!Character.isLetterOrDigit(res)) {
+                System.out.println("Error response. Retry...");
+                continue;
+            }
+            return res;
+        }
     }
 }

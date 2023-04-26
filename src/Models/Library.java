@@ -1,7 +1,6 @@
 package Models;
 
-import jdk.jshell.spi.ExecutionControl;
-
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,8 +9,25 @@ import java.util.List;
  * @author Umeshan
  */
 public class Library {
-    private List<Book> books;
-    private List<Member> members;
+
+    //// Lazy Singleton implementation
+    private static Library libraryInstance;
+    private Library(){}
+
+    /**
+     * Implements singleton pattern on Library
+     * @return Singleton Library object
+     */
+    public static Library getInstance(){
+        if(libraryInstance == null){
+            libraryInstance = new Library();
+        }
+        return libraryInstance;
+    }
+    ////
+
+    private List<Book> books = new ArrayList<>();
+    private List<Member> members = new ArrayList<>();
     private int lendingDurationInDays = 30; // No of days allowed to return a book after lending it
 
 
@@ -21,6 +37,16 @@ public class Library {
 
     public void removeBook(Book book) {
         this.books.remove(book);
+    }
+
+    public Book getBook(String isbn){
+        Book book = null;
+        for (Book currentBook : this.books) {
+            if (currentBook.getIsbn().equals(isbn)) {
+                book = currentBook;
+            }
+        }
+        return book;
     }
 
     public void addMember(Member member) {
@@ -39,5 +65,12 @@ public class Library {
         return members.toArray(new Member[0]);
     }
 
+    public List<Book> getAllBooks(){
+        return books;
+    }
+
+    public List<Member> getAllMembers(){
+        return members;
+    }
 
 }

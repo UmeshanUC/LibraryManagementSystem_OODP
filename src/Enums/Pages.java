@@ -6,5 +6,11 @@ public enum Pages {
     BookManage,
     LendBook,
     ReturnBook,
+    AddMember,
+    RemoveMember,
+    AddBook,
+    RemoveBook,
+    ShowBooks,
+    ShowMembers
 
 }
