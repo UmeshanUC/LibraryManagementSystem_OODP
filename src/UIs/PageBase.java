@@ -26,13 +26,20 @@ public abstract class PageBase implements Page {
 
     }
 
+    /**
+     // Wait for user interaction to continue cli execution
+     */
+    protected void pause(){
+        getUserStringInput("Press any key to continue...");
+    }
+
     protected String getUserStringInput(String label) {
         System.out.print(label);
         return input.nextLine();
     }
 
     protected char rerenderOnBackNavigation() {
-        return show();
+        return this.show();
     }
 
     protected abstract char execute();

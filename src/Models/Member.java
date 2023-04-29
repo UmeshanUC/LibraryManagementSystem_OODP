@@ -13,8 +13,11 @@ public class Member {
     private int id;
     private List<Book> borrowedBooks;
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
+    public int getId() {
+        return id;
+    }
 }

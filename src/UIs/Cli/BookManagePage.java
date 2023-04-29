@@ -42,13 +42,13 @@ public class BookManagePage extends PageBase {
                 pageRes = PageFactory.Create(Pages.ShowBooks, dataStore).show();
             }
             case 'b' -> {   // Back
-                pageRes = 'b';
+                // captures 'back' only from this page user input
+                return 'b';
             }
             case 'q', 'Q' -> {  // Exit
                 exitApp(0);
             }
         }
-        if (pageRes == 'b') rerenderOnBackNavigation();
         return 0;
     }
 }

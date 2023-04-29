@@ -28,7 +28,6 @@ public class Library {
 
     private List<Book> books = new ArrayList<>();
     private List<Member> members = new ArrayList<>();
-    private int lendingDurationInDays = 30; // No of days allowed to return a book after lending it
 
 
     public void addBook(Book book) {
@@ -47,6 +46,16 @@ public class Library {
             }
         }
         return book;
+    }
+
+    public Member getMember(int id){
+        Member member = null;
+        for (Member currentMember : this.members) {
+            if (currentMember.getId() == id) {
+                member = currentMember;
+            }
+        }
+        return member;
     }
 
     public void addMember(Member member) {

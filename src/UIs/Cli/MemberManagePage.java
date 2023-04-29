@@ -42,13 +42,12 @@ public class MemberManagePage extends PageBase {
                 pageRes = PageFactory.Create(Pages.ShowMembers, dataStore).show();
             }
             case 'b' -> {   // Back
-                pageRes = 'b';
+                return 'b';
             }
             case 'q', 'Q' -> {  // Exit
                 exitApp(0);
             }
         }
-        if (pageRes == 'b') rerenderOnBackNavigation();
         return 0;
     }
 }
