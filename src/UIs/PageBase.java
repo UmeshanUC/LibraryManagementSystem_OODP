@@ -14,7 +14,7 @@ public abstract class PageBase implements Page {
      * @param label alert to be displayed
      */
     protected void alert(String label) {
-        System.out.println(String.format("\n\n --- %s ---\n\n", label));
+        System.out.printf("\n\n --- %s ---\n\n%n", label);
     }
 
     public PageBase(StoreAdapter dataStore) {
@@ -27,10 +27,10 @@ public abstract class PageBase implements Page {
     }
 
     /**
-     // Wait for user interaction to continue cli execution
+     * Wait for user interaction to continue cli execution
      */
-    protected void pause(){
-        getUserStringInput("Press any key to continue...");
+    protected void pause() {
+        getUserStringInput("Press any key to continue...\n");
     }
 
     protected String getUserStringInput(String label) {
@@ -38,6 +38,10 @@ public abstract class PageBase implements Page {
         return input.nextLine();
     }
 
+    /**
+     * Re-render the page if a child page is navigated backwards
+     * @return returns the result of the page's user input
+     */
     protected char rerenderOnBackNavigation() {
         return this.show();
     }
@@ -57,6 +61,7 @@ public abstract class PageBase implements Page {
     public char show() {
         while (true) {
             char res = execute();
+
             if (!Character.isLetterOrDigit(res)) {
                 System.out.println("Error response. Retry...");
                 continue;

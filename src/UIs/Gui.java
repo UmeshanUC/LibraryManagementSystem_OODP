@@ -3,7 +3,7 @@ package UIs;
 import Stores.StoreAdapter;
 
 public class Gui implements UI {
-    private StoreAdapter store;
+    private final StoreAdapter store;
 
     public Gui(StoreAdapter store) {
 
@@ -11,7 +11,7 @@ public class Gui implements UI {
     }
 
     @Override
-    public void show() {
+    public void run() {
 
     }
 }

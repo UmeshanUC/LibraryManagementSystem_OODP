@@ -27,8 +27,7 @@ public class ReturnBookPage extends PageBase {
         } catch (Exception ex) {
             alert("Unexpected error occurred in saving !");
         }
-        // Wait for user interaction
-        getUserActionInput();
+        pause();
 
         return 'b';
 

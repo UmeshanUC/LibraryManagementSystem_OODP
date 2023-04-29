@@ -9,6 +9,18 @@ import UIs.Page;
 public class PageFactory {
     public static Page Create(Pages page, StoreAdapter store) {
         switch (page) {
+            case ShowAvailableBooks -> {
+                return new ShowAvailableBooksPage(store);
+            }
+            case ShowBorrowedBooks -> {
+                return new ShowBorrowedBooksPage(store);
+            }
+            case ShowOverdueBooks -> {
+                return new ShowOverdueBooksPage(store);
+            }
+            case ShowMembers -> {
+                return new ShowMembersPage(store);
+            }
             default -> {
                 // Homepage
                 return new HomePage(store);

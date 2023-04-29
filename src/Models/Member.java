@@ -1,5 +1,6 @@
 package Models;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class Member {
@@ -9,9 +10,9 @@ public class Member {
         this.borrowedBooks = borrowedBooks;
     }
 
-    private String name;
+    private final String name;
     private int id;
-    private List<Book> borrowedBooks;
+    private final List<Book> borrowedBooks;
 
     public String getName() {
         return name;
@@ -19,5 +20,14 @@ public class Member {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String toString() {
+
+        return String.format("\t%s\t|\t%s\t", id, name);
     }
 }

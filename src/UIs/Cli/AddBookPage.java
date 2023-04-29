@@ -23,9 +23,9 @@ public class AddBookPage extends PageBase {
 
         try {
             dataStore.store(book);
-            alert("Saved Successfully !");
+            alert("Saved successfully !");
         } catch (StoreException ex) {
-            alert("Error occurred in saving book");
+            alert("Error occurred in adding book");
         }
 
         return 'b';

@@ -14,9 +14,10 @@ public class Cli implements UI {
     }
 
     @Override
-    public void show() {
+    public void run() {
         System.out.println("\n\n\t\t\t\t---------- Welcome to LibMS ----------\n\n");
-
-            char pageRes = PageFactory.Create(Pages.Home, store).show();
+        while (true) {
+            PageFactory.Create(Pages.Home, store).show();
+        }
     }
 }

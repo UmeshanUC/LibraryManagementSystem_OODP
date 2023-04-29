@@ -48,6 +48,7 @@ public class MemberManagePage extends PageBase {
                 exitApp(0);
             }
         }
-        return 0;
+        if (pageRes == 'b') rerenderOnBackNavigation();
+        return res;
     }
 }

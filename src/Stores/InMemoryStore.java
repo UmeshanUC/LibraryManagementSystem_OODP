@@ -13,12 +13,12 @@ public class InMemoryStore implements StoreAdapter {
     public <T> void store(T item) throws StoreException {
 
         // null check
-        if(item == null) throw new StoreException("Null values cannot be passed to store");
+        if (item == null) throw new StoreException("Null values cannot be passed to store");
 
         if (item instanceof Book) {
             library.addBook((Book) item);
         } else if (item instanceof Member) {
-
+            library.addMember((Member) item);
         } else {
             throw new StoreException("Data type of the item was invalid.");
         }
@@ -30,7 +30,7 @@ public class InMemoryStore implements StoreAdapter {
             Book removingBook = library.getBook(((Book) item).getIsbn());
             library.removeBook((Book) item);
         } else if (item instanceof Member) {
-
+            library.removeMember(((Member) item).getId());
         } else {
             throw new StoreException("Data type of the item was invalid.");
         }

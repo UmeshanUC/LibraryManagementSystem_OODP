@@ -21,6 +21,12 @@ public class BookManagePage extends PageBase {
         System.out.print("\t");
         System.out.println("[3] Show all Books");
         System.out.print("\t");
+        System.out.println("[4] Show available Books");
+        System.out.print("\t");
+        System.out.println("[5] Show borrowed Books");
+        System.out.print("\t");
+        System.out.println("[6] Show overdue Books");
+        System.out.print("\t");
         System.out.println("[b] Back");
         System.out.print("\n");
         System.out.print("\t");
@@ -41,6 +47,15 @@ public class BookManagePage extends PageBase {
             case '3' -> {   // Show all Books
                 pageRes = PageFactory.Create(Pages.ShowBooks, dataStore).show();
             }
+            case '4' -> {   // Show available Books
+                pageRes = PageFactory.Create(Pages.ShowAvailableBooks, dataStore).show();
+            }
+            case '5' -> {   // Show borrowed Books
+                pageRes = PageFactory.Create(Pages.ShowBorrowedBooks, dataStore).show();
+            }
+            case '6' -> {   // Show overdue Books
+                pageRes = PageFactory.Create(Pages.ShowOverdueBooks, dataStore).show();
+            }
             case 'b' -> {   // Back
                 // captures 'back' only from this page user input
                 return 'b';
@@ -49,6 +64,7 @@ public class BookManagePage extends PageBase {
                 exitApp(0);
             }
         }
-        return 0;
+        if (pageRes == 'b') rerenderOnBackNavigation();
+        return res;
     }
 }

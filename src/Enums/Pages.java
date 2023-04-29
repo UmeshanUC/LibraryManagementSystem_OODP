@@ -11,6 +11,10 @@ public enum Pages {
     AddBook,
     RemoveBook,
     ShowBooks,
-    ShowMembers
+    ShowAvailableBooks,
+    ShowBorrowedBooks,
+    ShowOverdueBooks,
+    ShowMembers,
+
 
 }

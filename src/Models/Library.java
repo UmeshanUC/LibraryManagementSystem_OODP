@@ -12,22 +12,25 @@ public class Library {
 
     //// Lazy Singleton implementation
     private static Library libraryInstance;
-    private Library(){}
+
+    private Library() {
+    }
 
     /**
      * Implements singleton pattern on Library
+     *
      * @return Singleton Library object
      */
-    public static Library getInstance(){
-        if(libraryInstance == null){
+    public static Library getInstance() {
+        if (libraryInstance == null) {
             libraryInstance = new Library();
         }
         return libraryInstance;
     }
     ////
 
-    private List<Book> books = new ArrayList<>();
-    private List<Member> members = new ArrayList<>();
+    private final List<Book> books = new ArrayList<>();
+    private final List<Member> members = new ArrayList<>();
 
 
     public void addBook(Book book) {
@@ -38,7 +41,7 @@ public class Library {
         this.books.remove(book);
     }
 
-    public Book getBook(String isbn){
+    public Book getBook(String isbn) {
         Book book = null;
         for (Book currentBook : this.books) {
             if (currentBook.getIsbn().equals(isbn)) {
@@ -48,7 +51,7 @@ public class Library {
         return book;
     }
 
-    public Member getMember(int id){
+    public Member getMember(int id) {
         Member member = null;
         for (Member currentMember : this.members) {
             if (currentMember.getId() == id) {
@@ -58,27 +61,63 @@ public class Library {
         return member;
     }
 
+    private int generateNewMemberId() {
+        int maxMemberId = 0;
+        for (Member member : members) {
+            if (maxMemberId < member.getId()) maxMemberId = member.getId();
+        }
+        return ++maxMemberId;
+    }
+
     public void addMember(Member member) {
+        member.setId(generateNewMemberId());
         this.members.add(member);
     }
 
-    public void removeMember(Member member) {
-        this.members.remove(member);
+    public void removeMember(int id) {
+        this.members.removeIf(member -> member.getId() == id);
     }
 
-    public Book[] getAvailableBooks() {
-        return books.toArray(new Book[0]);
-    }
 
     public Member[] getAvailableMembers() {
         return members.toArray(new Member[0]);
     }
 
-    public List<Book> getAllBooks(){
+    public List<Book> getAllBooks() {
         return books;
     }
 
-    public List<Member> getAllMembers(){
+    public List<Book> getAvailableBooks() {
+        List<Book> availableBooks = new ArrayList<>();
+
+        this.books.forEach(book -> {
+            if (book.isAvailable()) availableBooks.add(book);
+        });
+
+        return availableBooks;
+    }
+
+    public List<Book> getBorrowedBooks() {
+        List<Book> borrowedBooks = new ArrayList<>();
+
+        this.books.forEach(book -> {
+            if (!book.isAvailable()) borrowedBooks.add(book);
+        });
+
+        return borrowedBooks;
+    }
+
+    public List<Book> getOverdueBooks() {
+        List<Book> overdueBooks = new ArrayList<>();
+
+        this.books.forEach(book -> {
+            if (book.isOverdue()) overdueBooks.add(book);
+        });
+
+        return overdueBooks;
+    }
+
+    public List<Member> getAllMembers() {
         return members;
     }
 

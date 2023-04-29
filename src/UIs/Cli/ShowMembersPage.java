@@ -24,8 +24,7 @@ public class ShowMembersPage extends PageBase {
             }
         }
 
-        // Wait for ENTER to continue
-        getUserStringInput("");
+        pause();
         return 'b';
     }
 }

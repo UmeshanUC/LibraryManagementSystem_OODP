@@ -1,5 +1,10 @@
 package UIs.Cli;
 
+import Builders.BookBuilder;
+import Builders.MemberBuilder;
+import Exceptions.StoreException;
+import Models.Book;
+import Models.Member;
 import Stores.StoreAdapter;
 import UIs.PageBase;
 
@@ -11,6 +16,18 @@ public class AddMemberPage extends PageBase {
 
     @Override
     protected char execute() {
-        return 0;
+        System.out.println("Enter member details");
+        Member member = new MemberBuilder()
+                .setName(getUserStringInput("\tName: "))
+                .GetMember();
+
+        try {
+            dataStore.store(member);
+            alert("Saved successfully !");
+        } catch (StoreException ex) {
+            alert("Error occurred in adding member");
+        }
+
+        return 'b';
     }
 }

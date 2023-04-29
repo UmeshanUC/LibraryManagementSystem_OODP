@@ -5,9 +5,9 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Book {
-    private String name;
-    private String author;
-    private String isbn;
+    private final String name;
+    private final String author;
+    private final String isbn;
     private Member borrower;
     private Date borrowedDate;
     private final int LENDING_DURATION_DAYS = 30; // No of days allowed to return a book after lending it
