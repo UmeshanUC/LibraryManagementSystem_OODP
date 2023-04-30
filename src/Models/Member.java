@@ -1,6 +1,5 @@
 package Models;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class Member {

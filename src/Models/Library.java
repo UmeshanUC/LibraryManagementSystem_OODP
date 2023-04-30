@@ -12,6 +12,9 @@ public class Library {
 
     //// Lazy Singleton implementation
     private static Library libraryInstance;
+    private final List<Book> books = new ArrayList<>();
+    private final List<Member> members = new ArrayList<>();
+    ////
 
     private Library() {
     }
@@ -27,11 +30,6 @@ public class Library {
         }
         return libraryInstance;
     }
-    ////
-
-    private final List<Book> books = new ArrayList<>();
-    private final List<Member> members = new ArrayList<>();
-
 
     public void addBook(Book book) {
         this.books.add(book);
@@ -76,11 +74,6 @@ public class Library {
 
     public void removeMember(int id) {
         this.members.removeIf(member -> member.getId() == id);
-    }
-
-
-    public Member[] getAvailableMembers() {
-        return members.toArray(new Member[0]);
     }
 
     public List<Book> getAllBooks() {

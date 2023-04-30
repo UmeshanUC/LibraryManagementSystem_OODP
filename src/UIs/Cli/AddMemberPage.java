@@ -1,9 +1,7 @@
 package UIs.Cli;
 
-import Builders.BookBuilder;
 import Builders.MemberBuilder;
 import Exceptions.StoreException;
-import Models.Book;
 import Models.Member;
 import Stores.StoreAdapter;
 import UIs.PageBase;

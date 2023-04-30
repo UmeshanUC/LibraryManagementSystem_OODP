@@ -1,6 +1,5 @@
 package UIs.Cli;
 
-import Models.Book;
 import Models.Member;
 import Stores.StoreAdapter;
 import UIs.PageBase;
